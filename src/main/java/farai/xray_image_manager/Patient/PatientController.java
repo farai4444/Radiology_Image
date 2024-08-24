@@ -1,27 +1,39 @@
 package farai.xray_image_manager.Patient;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
+@RequestMapping("/patients")
 public class PatientController {
+    @Autowired
+    public PatientService patientService;
+    @Autowired
+    public OtherService otherService;
 
-    @GetMapping("/patients/{patientId}")
+    @GetMapping("/{patientId}")
     public String getPatient(@PathVariable String patientId) {
         return "2256";
     }
 
-    @GetMapping("/patients")
-    public String getPatients() {
-        return "the patient is Farai";
+    @GetMapping
+    public ResponseEntity<List<?>> getPatients() {
+
+        return ResponseEntity.ok(patientService.findAllPatients());
     }
 
-    @GetMapping("/patients/search")
-    public void searchPatient(@RequestParam String patientId) {
+    @GetMapping("/search")
+    public ResponseEntity<List<?>> searchPatient(@RequestParam(name = "patientId") String patientId) {
+        return ResponseEntity.ok(patientService.findByPatientId(patientId));
     }
-
+    @PostMapping("/create-profile")
+    public ResponseEntity<?> createProfile(@RequestParam(name ="patientName") String patientName,@RequestParam(name ="patientSurname") String patientSurname,@RequestParam(name ="country") String country,@RequestParam(name ="city") String city,@RequestParam(name ="address") String address,@RequestParam(name ="age") int age, @RequestParam(name ="gender") char gender) {
+        otherService.validateInput(patientName,patientSurname,country,city,address,age,gender);
+        return ResponseEntity.ok("Patient profile successfully saved");
+    }
 
 }
