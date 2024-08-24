@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @Controller
 public class ImageController {
@@ -19,16 +24,27 @@ public class ImageController {
     @Autowired
 public ImageService imageService;
     @GetMapping("/Images/{patientId}")
-    public void getImages(@PathVariable String patientId){}
-    //@GetMapping("/Images/{patientId}/{ImageId}") public void getImage(@PathVariable String patientId,@PathVariable String imageId){}
-
-    @PostMapping("/Images/{patientId}")
-    public ResponseEntity<String> uploadImage(@PathVariable String patientId, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded){
+    public ResponseEntity<List<String>> getImages(@PathVariable String patientId){
+    return ResponseEntity.ok(imageService.imagesStream(patientId));
+    }
+    @GetMapping("/Images/{patientId}/{imageName}")
+    public ResponseEntity<byte[]> getImage(@PathVariable String patientId, @PathVariable String imageName){
+        //return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"" +imageService.imageStream(patientId, imageName).getFilename()+"\"").body(imageService.imageStream(patientId, imageName));
+        try {
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE,"image/jpeg").body(Files.readAllBytes(imageService.imageStream(patientId,imageName).getFile().toPath()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @PostMapping("/Images")
+    public ResponseEntity<String> uploadImage(@RequestParam("patientId") String patientId, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded){
             imageService.checkIfAnythingUploaded(imagesUploaded,patientId);
-            log.info("uploaded to the next function");
+           /// log.info("uploaded to the next function");
        // imageService.checkIfFileFormatSupported(imagesUploaded,"100g");
 
-        return ResponseEntity.ok("submission was a success");
+        return ResponseEntity.ok("The images are uploaded for patient "+patientId);
     }
-    //@GetMapping("/system") public String getSystemName(){String Osname = System.getProperty("os.name");System.out.println();System.out.println("The Operating System is "+Osname);return Osname ;
+    @GetMapping("/system")
+    public ResponseEntity<String> getSystemName(){String Osname = System.getProperty("os.name");System.out.println();System.out.println("The Operating System is "+Osname);return ResponseEntity.ok(Osname);
+}
 }

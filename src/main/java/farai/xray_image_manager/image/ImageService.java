@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class ImageService {
@@ -83,6 +85,12 @@ public class ImageService {
             throw new RuntimeException(e);}
         catch (UnsupportedOperationException | SecurityException e){log.error("the operation you are trying to execute is not supported");
             throw new RuntimeException("THERE IS AN UNSUPPORTED OPERATION OR SECURITY CONFLICT ENCOUNTERED CHECK FROM THIS ",e);}
+    }
+    public List<String> imagesStream(String patientId){
+      return imageRepo.retrieveImages(patientId);
+    }
+    public Resource imageStream(String patientId, String imageName){
+        return  imageRepo.retrieveImage(patientId,imageName);
     }
     public Path checkTheOperatingSystem(Path imageDirectoryPath){
         Path directoryPath = null;
