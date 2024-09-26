@@ -4,6 +4,8 @@ import farai.xray_image_manager.Patient.Patient;
 import farai.xray_image_manager.Patient.PatientService;
 import farai.xray_image_manager.image.ImageRepo;
 import farai.xray_image_manager.image.ImageService;
+import farai.xray_image_manager.image.ImageUrl;
+import farai.xray_image_manager.image.ImageUrlService;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,6 +68,10 @@ public class ApplicationConfig {
     public ImageService imageService () { return new ImageService();}
     @Bean
     public ImageRepo imageRepo () {return new ImageRepo();}
+    @Bean
+    public ImageUrl imageUrl () {return new ImageUrl();}
+    @Bean
+    public ImageUrlService imageUrlService () {return new ImageUrlService();}
     @Bean
     public Patient patient () {return new Patient();}
     @Bean

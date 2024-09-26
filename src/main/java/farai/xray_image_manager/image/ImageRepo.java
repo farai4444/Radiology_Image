@@ -1,38 +1,33 @@
 package farai.xray_image_manager.image;
 
 
-import org.apache.tomcat.util.file.ConfigurationSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.nio.file.*;
-import java.sql.Time;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static java.util.Date.from;
 
 @Repository
 public class ImageRepo {
     Logger log = LoggerFactory.getLogger(ImageRepo.class);
+    @Autowired
+     public ImageUrlService imageUrlService;
 
 
-    public void storeImage(Path directoryPath,MultipartFile imageFile){
+    public void storeImage(Path directoryPath, MultipartFile imageFile,int patientId,String uploader){
             try {
                 imageFile.transferTo(directoryPath);
+                String url = getImageFilePath(patientId, imageFile.getOriginalFilename()).toString();
+                imageUrlService.uploadUrl(patientId, uploader, url);
                 log.info("The image is created");
             }
             catch (NoSuchFileException e) {
@@ -44,7 +39,7 @@ public class ImageRepo {
             catch (UnsupportedOperationException | SecurityException e){log.error("the operation you are trying to execute is not supported here is why",e);
                 throw new RuntimeException("THERE IS AN UNSUPPORTED OPERATION OR SECURITY CONFLICT ENCOUNTERED CHECK FROM THIS ",e);}
     }
-    public List<String> retrieveImages(String patientId){
+    public List<String> retrieveImages(int patientId){
         List<String> resouces = new ArrayList<>();
         try {
             if (Files.exists(getImageDirectoryPath(patientId))) {
@@ -59,7 +54,7 @@ public class ImageRepo {
         }
         return resouces;
     }
-    public Resource retrieveImage(String patientId,String imageName){
+    public Resource retrieveImage(int patientId,String imageName){
         Resource imageResource = null;
         try {
             imageResource = new UrlResource(getImageFilePath(patientId, imageName));
@@ -69,10 +64,20 @@ public class ImageRepo {
         }
         return imageResource;
     }
-    public Path getImageDirectoryPath(String patientId){
+    public Resource retrieveImageDB(URI uri){
+        Resource imageResource = null;
+        try {
+            imageResource = new UrlResource(uri);
+        } catch (MalformedURLException e) {
+            log.info("You have passed an invalid Url");
+            throw new RuntimeException(e);
+        }
+        return imageResource;
+    }
+    public Path getImageDirectoryPath(int patientId){
         return FileSystems.getDefault().getPath("/Users","/Public/Radiology/"+ patientId);}
 
-    public URI getImageFilePath(String patientId, String imageName){
+    public URI getImageFilePath(int patientId, String imageName){
         return FileSystems.getDefault().getPath("/Users","/Public/Radiology/"+ patientId+"/"+imageName).toUri();}
 
 }
