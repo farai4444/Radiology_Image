@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create Profile</title>
@@ -8,7 +8,7 @@
 <form  id="myForm" style="display:flex; flex-direction:column; width: 20;"
        action="/patients/create-profile" method="post">
     <label for="patientName">Name</label>
-    <input type="text" name="patientName" id="patientName">
+    <input name="patientName" id="patientName">
     <label for="patientSurname">Surname</label>
     <input type="text" name="patientSurname" id="patientSurname">
     <label for="country">Country</label>

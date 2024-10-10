@@ -16,7 +16,7 @@ public class PatientController {
     public OtherService otherService;
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<List<?>> getPatient(@PathVariable String patientId) {
+    public ResponseEntity<?> getPatient(@PathVariable String patientId) {
         return ResponseEntity.ok( patientService.findByPatientId(patientId));
     }
 

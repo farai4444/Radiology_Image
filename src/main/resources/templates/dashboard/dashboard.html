@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li th:each="patient : ${patients}">
+    <p>Name: <span th:text="${patient.patientName}">Frank</span></p>
+    <p>Surname: <span th:text="${patient.patientSurname}">Moses</span></p>
+    <p>Country: <span th:text="${patient.country}">Zimbabwe</span></p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

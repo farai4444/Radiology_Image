@@ -1,11 +1,4 @@
-package farai.xray_image_manager;
-import farai.xray_image_manager.Patient.OtherService;
-import farai.xray_image_manager.Patient.Patient;
-import farai.xray_image_manager.Patient.PatientService;
-import farai.xray_image_manager.image.ImageRepo;
-import farai.xray_image_manager.image.ImageService;
-import farai.xray_image_manager.image.ImageUrl;
-import farai.xray_image_manager.image.ImageUrlService;
+package farai.xray_image_manager.Configurations;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,14 +7,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "farai.xray_image_manager")
 @EnableTransactionManagement
-public class ApplicationConfig {
+public class DataSourceConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -29,10 +21,13 @@ public class ApplicationConfig {
         dataSource.setUrl("jdbc:mysql://localhost:3306/radiology");
         return dataSource;
     }
-    //@Bean
-  //  public PlatformTransactionManager transactionManager() {
-    //    return new JpaTransactionManager(entityManagerFactory());
-    //}
+    /*
+    *************************Keep commented unless needed*****************************
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager(entityManagerFactory());
+    }
+     */
     @Bean
     public Properties hibernateProperties() {
         Properties hibernateProp = new Properties();
@@ -46,15 +41,13 @@ public class ApplicationConfig {
         return hibernateProp;
     }
     /*
+    ******************Keep commented unless needed****************************
     @Bean
-    public DataSource appSource(){
-        return DataSourceBuilder.create().build();
-    }
+    public DataSource appSource(){return DataSourceBuilder.create().build(); }
     */
     @Bean
     public EntityManagerFactory entityManagerFactory(){
-        LocalContainerEntityManagerFactoryBean factoryBean =
-                new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPackagesToScan("farai.xray_image_manager");
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
@@ -64,18 +57,4 @@ public class ApplicationConfig {
         return factoryBean.getNativeEntityManagerFactory();
     }
 
-    @Bean
-    public ImageService imageService () { return new ImageService();}
-    @Bean
-    public ImageRepo imageRepo () {return new ImageRepo();}
-    @Bean
-    public ImageUrl imageUrl () {return new ImageUrl();}
-    @Bean
-    public ImageUrlService imageUrlService () {return new ImageUrlService();}
-    @Bean
-    public Patient patient () {return new Patient();}
-    @Bean
-    public PatientService patientRepo () {return new PatientService();}
-    @Bean
-    public OtherService otherService () {return new OtherService();}
 }

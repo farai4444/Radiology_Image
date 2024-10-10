@@ -1,4 +1,4 @@
-package farai.xray_image_manager;
+package farai.xray_image_manager.Configurations;
 
 import farai.xray_image_manager.image.ImageController;
 import org.slf4j.Logger;

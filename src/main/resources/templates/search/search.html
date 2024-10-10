@@ -1,14 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Search Test</title>
+    <title>Patient Search</title>
+    <link rel="stylesheet" href="search-style.css">
 </head>
 <body>
-<form action="/patients/search" method="get">
-    <input type="search" name="patientId">
-    <button type="submit"> Submit</button>
+    <!--navigation bar-->
+        <div class="primary-header" id="MainBar">
+             <div class="nav 1"><h1  id="bar"></h1></div>
+             <div class="nav 2"><h1  id="Title">Radiology</h1></div>
+             <div class="nav 3"><h3  id="userSessionName">Username</h3></div>
+            </div>
+        
+<div class="container">
+    <div class="sub-container">
+    <div class="searchSect">
+<form action="/patients/search" method="get" class="searchForm">
+    <input type="search" name="patientId" id="searchInput">
+    <button type="submit" id="searchBtn"> <img id="searchIcon" src="3650895391548336152-128.png" alt="" srcset=""></button>
 </form>
-<img src="/Images?url_Id=8" alt="LOGO" srcset="">
+    </div>
+<div class="divider1"></div>
+<h1 id="resultHeader">Results:</h1>
+<div class="section left" id="resultSect">
+<ul>
+    <li>
+        <button id="resultValue">farai Tapfumaneyi</button>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="divider"></div>
+<div class="section right" id="valueSect">
+<ul>
+    <li> 
+        <span>Name:      farai</span>
+        <span>Surname:   Tapfumaneyi</span>
+        <span>Age:       40</span>
+        <span>Gender:     M</span>
+    </li>
+</ul>
+<button id="viewBtn" type="button" onclick="">view profile</button>
+</div>
+</div>
+<script src="search-script.js"></script>
 </body>
 </html>

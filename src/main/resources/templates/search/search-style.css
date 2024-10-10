@@ -1,0 +1,151 @@
+
+.primary-header{
+	display: flex;
+    flex-direction: row;
+	width: 1082px;
+	height: 64px;
+	margin: 0px 120px;
+	border-radius: 12px;
+	border: 2px solid #1F8AFF; /* Blue stroke */
+	align-content: center ;
+	align-items: center;
+	background-color: #1F8AFF;
+	position: relative;
+}
+.nav{padding: 10px 10%;
+	margin: 0px 50px;
+}
+#Title:hover {
+    color: teal; /* Change color on hover */
+}
+#Title{
+	font-size: xx-large;
+	font-weight: normal;
+	color:white;
+
+}
+.divider{
+	width: 3px;
+	padding: 100px 0px;
+    background-color: #1F8AFF; /* Color of the line */
+}
+.divider1{
+	height: 2px;
+	width: auto;
+    background-color:#1F8AFF; /* Color of the line */
+}
+.container {
+    display: flex;
+	flex-direction: row;
+	margin: 0px 150px;
+}
+.sub-container {
+	width: 80%;
+    display: flex;
+	flex-direction: column;
+}
+/*this adjust the positioning of the resultSect container*/
+#resultSect {
+    flex: 1; /* Equal width for components */
+    padding-right: 55px;
+	padding: 0px 100px;
+	overflow-y:auto;
+}
+/*changes the behaviour of the resultSect list items*/
+#resultSect ul li{
+	align-items: center;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+/*adjusts the valueSect container list items*/
+#valueSect ul li{
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+#valueSect {
+	margin: 20px 100px;
+	padding-bottom: 20px;
+	
+}
+#viewBtn{
+	width: 164px;
+	height: 83px;
+	margin-left: 100px;
+	text-align: center;
+	border: 0px;
+	border-radius: 100px;
+	background-color:#1F8AFF;
+	color: white;
+
+}
+#viewBtn:hover {
+    background-color: teal; /* Change color on hover */
+}
+
+#valueSect ul li span{
+	padding-bottom: 60px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: larger;
+	font-style: normal;
+	font-weight: bold;
+}
+.searchSect {
+    padding:10px 10px;
+    margin: 50px 20px; /* Space around sections */
+    border-radius: 5px;
+}
+/*this adjust the positioning of components in section container*/
+.section{
+	flex: 1; /* Equal width for all sections */
+	width: 50%;
+}
+.searchForm{
+	width:  512px;
+	height: 46px;
+	border: 2px solid #1F8AFF;
+	/*background-color: yellowgreen;*/
+	border-radius: 28px;
+	padding-bottom: 8px;
+}
+#searchInput{
+	width: 350px;
+	height: 20px;
+	margin:0px 50px;
+	border: 0px;
+}
+#searchBtn{
+	width: 40px;
+	height: 40px;
+	margin-top: 10px;
+	border-radius: 100px; /* Makes the container circular */
+	background-color: #C8DFFC;
+	border: 0px;
+}
+#resultHeader{
+	text-align: center;
+	justify-content: center;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: x-large;
+	font-style: normal;
+	font-weight: bold;
+}
+#searchIcon{
+	width: 18px;
+	height: 18px;
+	filter: hue-rotate(0deg) saturate(100%) brightness(100%) contrast(0%) sepia(0%) invert(0%) saturate(0%) drop-shadow(0 0 0 red);
+}
+#resultValue{
+	background-color:white;
+	border: 2px solid #1F8AFF;
+	width: 300px;
+	height: 40px;
+	border-radius: 8px;
+}
+#resultValue:hover{
+	border: 2px solid teal;
+}
+#userSessionName{
+	color: white;
+}
