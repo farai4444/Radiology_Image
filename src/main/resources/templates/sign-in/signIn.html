@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="signIn-style.css">
+</head>
+<body>    
+<div class="container">
+    <h2 id="formTitle">Sign In</h2>
+<form action="" method="post" class="signInForm">
+    <input type="text" name="userName" id="userName" class="inputValues" placeholder="username">
+    <input type="password" name="password" id="password" class="inputValues" placeholder="password">
+    <button type="submit" id="signInBtn">sign in</button>
+    <div class="linkRefs"><span><a href="/static/error/404.html">forgot password</a></span>
+    <span><a href="/static/error/404.html">create account</a></span></div>
+    
+</form>
+</div>
+<script src="signIn-script.js"></script>
+</body>
+</html>

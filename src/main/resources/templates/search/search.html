@@ -17,7 +17,7 @@
     <div class="sub-container">
     <div class="searchSect">
 <form action="/patients/search" method="get" class="searchForm">
-    <input type="search" name="patientId" id="searchInput">
+    <input type="search" name="patientId" id="searchInput" placeholder="name and surname">
     <button type="submit" id="searchBtn"> <img id="searchIcon" src="3650895391548336152-128.png" alt="" srcset=""></button>
 </form>
     </div>
@@ -31,7 +31,6 @@
 </ul>
 </div>
     </div>
-    <div class="divider"></div>
 <div class="section right" id="valueSect">
 <ul>
     <li> 
@@ -41,7 +40,7 @@
         <span>Gender:     M</span>
     </li>
 </ul>
-<button id="viewBtn" type="button" onclick="">view profile</button>
+<button id="viewBtn" type="button" onclick="location.href='http://127.0.0.1:5500/static/error/404.html'">view profile</button>
 </div>
 </div>
 <script src="search-script.js"></script>

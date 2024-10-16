@@ -1,0 +1,153 @@
+
+.primary-header{
+	display: flex;
+    flex-direction: row;
+	width: 1082px;
+	height: 64px;
+	margin: 0px 120px;
+	border-radius: 12px;
+	border: 2px solid #1F8AFF; /* Blue stroke */
+	align-content: center ;
+	align-items: center;
+	background-color: #1F8AFF;
+	position: relative;
+}
+.nav{padding: 10px 10%;
+	margin: 0px 50px;
+}
+#Title:hover {
+    color: teal; /* Change color on hover */
+}
+#Title{
+	font-size: xx-large;
+	font-weight: normal;
+	color:white;
+
+}
+.divider{
+	width: 3px;
+	padding: 100px 0px;
+    background-color: #1F8AFF; /* Color of the line */
+}
+.container {
+
+    display: flex;
+	flex-direction: row;
+	margin: 0px 150px;
+}
+
+/*adjusts the valueSect container list items*/
+#valueSect ul li{
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+#valueSect {
+	margin:50px 100px;
+	
+}
+#viewBtn{
+	width: 164px;
+	height: 83px;
+	margin: 0px 100px;
+	text-align: center;
+	border: 0px;
+	border-radius: 100px;
+	background-color:#1F8AFF;
+	color: white;
+
+}
+#viewBtn:hover {
+    background-color: teal; /* Change color on hover */
+}
+
+#valueSect ul li span{
+	padding-bottom: 60px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: larger;
+	font-style: normal;
+	font-weight: bold;
+	color:black
+}
+#valueSect ul{
+	/*background-color: red;*/
+	border: 2px solid #1F8AFF;
+	padding: 10px 50px;
+	
+} 
+/*this adjust the positioning of components in section container*/
+.section{
+	width: 80%;
+}
+#userSessionName{
+	color: white;
+}
+body{
+/*background-color: black;*/
+}
+ .list img{
+	width: 600px;
+	max-width: 100vw;
+	height: 600px;
+	object-fit:fill;
+}
+.slider .list {
+	position: relative;
+	width: 800%;
+	left: 0;
+}
+.slider{
+	width: 600px;
+	height: 600px;
+	margin: 10px;
+	position: relative;
+	overflow: hidden;
+}
+.list{
+	top: 0;
+	left: 0;
+	position: absolute;
+	height: 100%;
+	display: flex;
+	width: max-content;
+	transition: 1s;
+}
+.buttons{
+	position: absolute;
+	top: 45%;
+	left: 5%;
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+}   
+.buttons button{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #1F8AFF;
+	color: #fff;
+	border: none;
+	font-family: monospace;
+	font-weight: bold;
+	font-size:xx-large;
+}
+  
+.buttons button:hover{
+	background-color: teal;
+	transition: all .3s;
+}
+#navBackBtn{
+	background-color: #fff;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	color: #1F8AFF;
+	border: none;
+	font-family: monospace;
+	font-weight: bold;
+	font-size:xx-large;
+}
+#navBackBtn:hover{
+	background-color: teal;
+	transition: all .3s;
+}

@@ -1,0 +1,75 @@
+
+.container {
+	width: 45%;
+	height: 80%;
+	padding: 2px 1px;
+	margin: 100px 400px;
+	background-color: rgba(15, 120, 232, 0.654)
+}
+#formTitle{
+	color: white;
+}
+body{
+	width: 80%;
+	height: auto;
+	background-image: url(background.gif);
+	background-attachment:fixed;
+	background-size:contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: black;
+
+
+}
+.signInForm{
+	width:  500px;
+	flex-direction: column;
+	display: flex;
+	margin: 0px 0px;
+}
+.inputValues{
+	width: 350px;
+	height: 30px;
+	margin:20px 50px;
+	padding: 2px;
+	background-color:transparent;
+	border: 1px solid white;
+	border-radius: 10px;
+	text-align: center;
+	color: #1F8AFF;
+}
+
+#signInBtn{
+	width: 164px;
+	height: 83px;
+	margin-left:150px;
+	text-align: center;
+	border: 0px;
+	border-radius: 100px;
+	background-color:#1F8AFF;
+	color: white;
+
+}
+#signInBtn:hover {
+    background-color: teal; /* Change color on hover */
+}
+span a{
+	color: white;
+	padding: 0px 70px;
+	text-decoration: none;
+}
+.linkRefs{
+	margin: 50px 0px;
+}
+#formTitle{
+	margin-left: 180px;
+}
+#userName::placeholder{
+	color: white;
+}
+#password::placeholder{
+	color: white;
+}
+span a:hover{
+	color: #1F8AFF;
+}

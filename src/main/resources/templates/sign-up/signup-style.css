@@ -1,0 +1,80 @@
+
+.container {
+	width: 40%;
+	height: 80%;
+	padding: 4px;
+	margin: 100px 450px;
+	background-color:  rgba(15, 120, 232, 0.654)
+}
+#formTitle{
+	color: white;
+}
+body{
+	width: 80%;
+	height: auto;
+	background-image: url(background.gif);
+	background-attachment:fixed;
+	background-size:contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: black;
+
+
+}
+.signUpForm{
+	width:  450px;
+	flex-direction: column;
+	display: flex;
+	margin: 0px 0px;
+	padding: 10px 0px;
+	
+}
+.inputValues{
+	width: 350px;
+	height: 30px;
+	margin:15px 50px;
+	padding: 1px;
+	background-color:transparent;
+	border: 1px solid white;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+}
+
+#signInBtn{
+	width: 164px;
+	height: 83px;
+	margin-left:150px;
+	text-align: center;
+	border: 0px;
+	border-radius: 100px;
+	background-color:#1F8AFF;
+	color: white;
+
+}
+#signInBtn:hover {
+    background-color: teal; /* Change color on hover */
+}
+span a{
+	color: #1F8AFF;
+	padding: 0px 50px;
+	text-decoration: none;
+}
+.linkRefs{
+	margin: 50px 0px;
+}
+#formTitle{
+	margin-left: 180px;
+}
+#userName::placeholder{
+	color: white;
+}
+#password::placeholder{
+	color: white;
+}
+#email::placeholder{
+	color: white;
+}
+#confirm-password::placeholder{
+	color: white;
+}

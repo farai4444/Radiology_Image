@@ -99,7 +99,7 @@
 /*this adjust the positioning of components in section container*/
 .section{
 	flex: 1; /* Equal width for all sections */
-	width: 50%;
+	width: 80%;
 }
 .searchForm{
 	width:  512px;

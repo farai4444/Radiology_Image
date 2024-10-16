@@ -1,0 +1,81 @@
+
+.container {
+	width: 40%;
+	height: 50%;
+	padding: 4px;
+	margin: 100px 450px;
+	background-color: rgba(15, 120, 232, 0.654)
+}
+#formTitle{
+	color: white;
+}
+body{
+	width: 80%;
+	height: auto;
+	background-image: url(background.gif);
+	background-attachment:fixed;
+	background-size:contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: black;
+
+
+}
+.inputValues{
+	width: 350px;
+	height: 30px;
+	margin:10px 50px;
+	padding: 1px;
+	background-color:transparent;
+	border: 1px solid white;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+}
+
+#createBtn{
+	width: 164px;
+	height: 60px;
+	margin-left:150px;
+	margin: 10px 0px;
+	text-align: center;
+	border: 0px;
+	border-radius: 100px;
+	background-color:#1F8AFF;
+	color: white;
+}
+#createBtn:hover {
+    background-color: teal; /* Change color on hover */
+}
+#formTitle{
+	margin-left: 180px;
+}
+#city::placeholder{
+	color: white;
+}
+#address::placeholder{
+	color: white;
+}
+#age::placeholder{
+	color: white;
+}
+#country::placeholder{
+	color: white;
+}
+#patientSurname::placeholder{
+	color: white;
+}
+#patientName::placeholder{
+	color: white;
+}
+#maleLabel{
+	padding-left: 50px;
+	color: white;
+}
+#femaleLabel{
+	color: white;
+}
+.genderRadio{
+	margin: 10px;
+	padding: 0px 10px;
+}

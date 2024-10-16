@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="create-profile-style.css">
+</head>
+<body>    
+<div class="container">
+    <h2 id="formTitle">Create Profile</h2>
+<form action="" method="post" class="create-profile-form">
+    <input type="text" name="patientName" id="patientName" placeholder="name" class="inputValues">
+    <input type="text" name="patientSurname" id="patientSurname" placeholder="surname" class="inputValues">
+    <input type="number" name="age" id="age" placeholder="age" class="inputValues">
+    <input type="text" name="country" id="country" placeholder="country" class="inputValues">
+    <input type="text" name="city" id="city" placeholder="city" class="inputValues">
+    <input type="text" name="address" id="address" placeholder="address" class="inputValues">
+    <label for="male" id="maleLabel">Male</label>
+    <input type="radio" id="male" name = "gender" value="m" class="genderRadio">
+    <label for="female" id="femaleLabel">Female</label>
+    <input type="radio" id="female" name = "gender" value="f" class="genderRadio">
+     <button type="submit" id="createBtn">create profile</button> 
+</form>
+</div>
+<script src="create-profile-script.js"></script>
+</body>
+</html>
