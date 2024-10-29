@@ -13,6 +13,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,14 +25,20 @@ public class ImageUrlService {
      public ImageUrlRepo imageUrlRepo;
     public  ImageUrl imageUrl;
 public void uploadUrl(int patientId, String uploader, String url){
-
-imageUrl = new ImageUrl(patientId,uploader, LocalDate.now(),url);
+imageUrl = new ImageUrl(patientId,uploader, LocalDateTime.now(),url);
 imageUrlRepo.save(imageUrl);
 }
-public URI getUrl(int url_Id) throws URISyntaxException, MalformedURLException {
+public List<?> getUrlIds(int patientId){
+return imageUrlRepo.findUrlIdByPatientId(patientId);
+}
+
+    public List<?> getImageUrl(int patientId) {
+        return imageUrlRepo.findAllByPatientId(patientId);
+    }
+
+    public URI getUrl(int url_Id) throws URISyntaxException, MalformedURLException {
    // imageUrl = new ImageUrl(patient_Id);
     return new URI( imageUrlRepo.findUrlByUrlId(url_Id) );
-
 }
 
 }

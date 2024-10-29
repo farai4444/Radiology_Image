@@ -10,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
@@ -51,9 +48,10 @@ public class AppController {
         return result;
     }
 
-    @GetMapping("submit")
-    public String submit(){
-        return "submit/submit.html";
+    @GetMapping("upload")
+    public String upload(@RequestParam("patientId") int patientId, Model model){
+        model.addAttribute("patientId",patientId);
+        return "upload/uploads.html";
     }
     @GetMapping("search")
     public String search(){
@@ -61,7 +59,7 @@ public class AppController {
     }
     @GetMapping("create-profile")
     public String createProfile(){
-        return "create-profile/create-profile.html";
+        return "create-profile/create-patient-profile.html";
     }
     @GetMapping("dashboard")
     public String dashboard(Model model){
@@ -69,7 +67,33 @@ public class AppController {
         List<?> patients = restTemplate.getForObject(url,List.class);
         model.addAttribute("patients",patients);
         logs.info("patients: {}",patients);
-
         return "dashboard/dashboard.html";
+    }
+    @GetMapping("test")
+    public ResponseEntity.HeadersBuilder<?> test(){
+        return  ResponseEntity.noContent();
+    }
+    @GetMapping("image-gallery")
+    public String image_Gallery(@RequestParam("patientId") String patientId,Model model){
+        String patientObjectUrl = "http://localhost:800/patient/search?patientId="+patientId;
+        /*THE IMAGE URL HAS NOT YET BEEN PLACED*/
+        /*CHOOSE BETWEEN DATABASE AND FILESYSTEM URLS*/
+        String imageUrl = "http://localhost:800/image/info/url/"+patientId;
+      //  String imageUrlObject = "http://localhost:800/image/info/url/"+patientId;/*spot*/
+        List<?> response0 = restTemplate.getForObject(patientObjectUrl, List.class);
+      //  List<?> response1 = restTemplate.getForObject(imageUrlObject, List.class);
+        List<?> response2 = restTemplate.getForObject(imageUrl, List.class);
+        model.addAttribute("response0",response0);
+       // model.addAttribute("response1",response1);/*x*/
+        model.addAttribute("response2",response2);
+        return "image-gallery/image-gallery.html";
+    }
+    @GetMapping("sign-in")
+    public String sign_In(){
+        return "sign-in/signIn.html";
+    }
+    @GetMapping("sign-up")
+    public String sign_Up(){
+        return "sign-up/signup.html";
     }
 }

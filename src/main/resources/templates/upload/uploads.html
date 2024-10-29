@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Image Upload</title>
-    <link rel="stylesheet" href="uploads-styles.css">
+    <link th:href="@{/css/uploads-styles.css}"  rel="stylesheet">
 </head>
 <body>    
 <div class="container">
-    <h2 id="formTitle">Image Upload</h2>
-<form action="" method="post" class="signInForm"  enctype="multipart/form-data" >
-    <input type="text" name="userName" id="uploader" class="inputValues" placeholder="uploader">
+    <h2 id="formTitle" >Image Upload</h2>
+<form th:action="@{/image/upload(patientId=${patientId})}" method="post" class="signInForm"  enctype="multipart/form-data" >
+    <input type="text" name="uploader" id="uploader" class="inputValues" placeholder="uploader">
     <input type="file" multiple ="multiple" name="uploads" id="uploads" class="inputValues" placeholder="choose files">
     <button type="submit" id="submitBtn">submit</button>
     
 </form>
 </div>
-<script src="uploads-script.js"></script>
+<style th:inline="css">
+    body{
+     background-image: url('/img/background.gif')
+    }
+</style>
+<script th:src="@{js/uploads-script.js}"></script>
 </body>
 </html>

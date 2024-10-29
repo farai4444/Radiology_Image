@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign up</title>
-    <link rel="stylesheet" href="signup-style.css">
+    <link th:href="@{css/signup-style.css}"  rel="stylesheet">
 </head>
 <body>    
 <div class="container">
@@ -16,6 +16,11 @@
     <button type="submit" id="signInBtn">sign up</button>
 </form>
 </div>
-<script src="signup-script.js"></script>
+<style th:inline="css">
+    body{
+     background-image: url('/img/background.gif')
+    }
+</style>
+<script th:src="@{js/signup-script.js}"></script>
 </body>
 </html>

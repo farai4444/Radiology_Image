@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Profile</title>
-    <link rel="stylesheet" href="create-profile-style.css">
+    <link th:href="@{/css/create-profile-style.css}" rel="stylesheet">
 </head>
-<body>    
+<body>
+
 <div class="container">
     <h2 id="formTitle">Create Profile</h2>
 <form action="" method="post" class="create-profile-form">
@@ -22,6 +23,11 @@
      <button type="submit" id="createBtn">create profile</button> 
 </form>
 </div>
-<script src="create-profile-script.js"></script>
+<style th:inline="css">
+    body{
+     background-image: url('/img/background.gif')
+    }
+</style>
+<script  th:src="@{/js/create-profile-script.js}"></script>
 </body>
 </html>

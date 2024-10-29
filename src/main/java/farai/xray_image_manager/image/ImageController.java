@@ -18,21 +18,35 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/image")
 public class ImageController {
     Logger log = LoggerFactory.getLogger(ImageController.class);
     @Autowired
 public ImageService imageService;
     @Autowired
     public ImageUrlService imageUrlService;
-    @GetMapping("/Images/{patientId}")
-    public ResponseEntity<List<String>> getImages(@PathVariable int patientId){
+/*ADD AN API THAT GETS URL_ID USING PATIENT_ID*/
+    /*first get image names by patientId using this API*/
+    @GetMapping("/name/{patientId}")
+    public ResponseEntity<List<String>> getImageNames(@PathVariable int patientId){
     return ResponseEntity.ok(imageService.imagesStream(patientId));
     }
+    /*this API gets the image urls that will be passed to the getImageByDB method for display on interface*/
+    @GetMapping("/file/id/{patientId}")
+    public ResponseEntity<List<?>> getImageFileUrlId(@PathVariable  int patientId){
+        return ResponseEntity.ok(imageUrlService.getUrlIds(patientId));
+    }
+    @GetMapping("/info/url/{patientId}")
+    public ResponseEntity<List<?>> getImageUrl(@PathVariable int patientId){
+        return ResponseEntity.ok(imageUrlService.getImageUrl(patientId));
+    }
     /*Accessing images using file system*/
-    @GetMapping("/Images/{patientId}/{imageName}")
-    public ResponseEntity<byte[]> getImage(@PathVariable int patientId, @PathVariable String imageName){
+    /*use this API to display images on interfaces taking the image names from getImageNames()*/
+    @GetMapping("/file/{patientId}/{imageName}")
+    public ResponseEntity<byte[]> getImageFIleByFS(@PathVariable int patientId, @PathVariable String imageName){
         //return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"" +imageService.imageStream(patientId, imageName).getFilename()+"\"").body(imageService.imageStream(patientId, imageName));
         try {
             //imageService.imageStream(patientId,imageName).getFile().toPath()
@@ -41,10 +55,10 @@ public ImageService imageService;
             throw new RuntimeException(e);
         }
     }
-    /*Accessing images using Database*/
-
-    @GetMapping("/Images")
-    public ResponseEntity<byte[]> getImageByDB(@RequestParam("url_Id") int url_Id){
+    /*Accessing images file using Database*/
+    /*first get the url_Id using parameter patientId from method getImageFileUrlId()*/
+    @GetMapping("/file")
+    public ResponseEntity<byte[]> getImageFileByDB(@RequestParam("url_Id") int url_Id){
         //return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"" +imageService.imageStream(patientId, imageName).getFilename()+"\"").body(imageService.imageStream(patientId, imageName));
         try {
             //imageService.imageStream(patientId,imageName).getFile().toPath()
@@ -53,12 +67,18 @@ public ImageService imageService;
             throw new RuntimeException(e);
         }
     }
-    @PostMapping("/Images")
-    public ResponseEntity<String> uploadImage(@RequestParam("patientId") int patientId, @RequestParam("uploader") String uploader, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded){
+    @PostMapping
+    public ResponseEntity<String> uploadImageFIle(@RequestParam("patientId") int patientId, @RequestParam("uploader") String uploader, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded){
             imageService.checkIfAnythingUploaded(imagesUploaded,patientId,uploader);
            /// log.info("uploaded to the next function");
        // imageService.checkIfFileFormatSupported(imagesUploaded,"100g");
-
+        return ResponseEntity.ok("The images are uploaded for patient "+patientId);
+    }
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadImageFIleTemp(@RequestParam("patientId") int patientId, @RequestParam(name = "uploader") String uploader, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded){
+        imageService.checkIfAnythingUploaded(imagesUploaded,patientId,uploader);
+        /// log.info("uploaded to the next function");
+        // imageService.checkIfFileFormatSupported(imagesUploaded,"100g");
         return ResponseEntity.ok("The images are uploaded for patient "+patientId);
     }
     @GetMapping("/system")

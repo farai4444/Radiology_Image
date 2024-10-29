@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Patient Search</title>
-    <link rel="stylesheet" href="search-style.css">
+    <link th:href="@{/css/search-style.css}" rel="stylesheet">
 </head>
 <body>
     <!--navigation bar-->
@@ -16,33 +16,46 @@
 <div class="container">
     <div class="sub-container">
     <div class="searchSect">
-<form action="/patients/search" method="get" class="searchForm">
-    <input type="search" name="patientId" id="searchInput" placeholder="name and surname">
-    <button type="submit" id="searchBtn"> <img id="searchIcon" src="3650895391548336152-128.png" alt="" srcset=""></button>
+<form th:action="@{/patient/temp/search}" method="get" class="searchForm">
+    <input type="search" name="patientId" th:value="${patientId}" id="searchInput" placeholder="patient Id">
+    <button type="submit" id="searchBtn"> <img id="searchIcon" th:src="@{/img/3650895391548336152-128.png}" alt="" onsubmit="return errors()"></button>
 </form>
     </div>
 <div class="divider1"></div>
-<h1 id="resultHeader">Results:</h1>
+<h1 id="resultHeader"></h1>
 <div class="section left" id="resultSect">
-<ul>
-    <li>
-        <button id="resultValue">farai Tapfumaneyi</button>
-    </li>
-</ul>
+    <span id="errors"></span>
 </div>
     </div>
-<div class="section right" id="valueSect">
+<div class="section right" id="valueSect" th:if="${searchResults}">
 <ul>
-    <li> 
-        <span>Name:      farai</span>
-        <span>Surname:   Tapfumaneyi</span>
-        <span>Age:       40</span>
-        <span>Gender:     M</span>
+    <li th:each="result :${searchResults}">
+        <span th:text="'Name: '+ ${result.patientName}">Name:      Susan</span>
+        <span th:text="'Surname: ' + ${result.patientSurname}">Surname:   Smith</span>
+        <span th:text="'Age: '+${result.age}">Age:       40</span>
+        <span th:text="'Gender:  '+${result.gender}">Gender:     F</span>
+        <button id="viewBtn" type="button" th:attr="onclick='location.href=\'/image-gallery?patientId=' + ${result.patientId} + '\''">View Profile</button>
     </li>
 </ul>
-<button id="viewBtn" type="button" onclick="location.href='http://127.0.0.1:5500/static/error/404.html'">view profile</button>
 </div>
 </div>
-<script src="search-script.js"></script>
+    <script th:inline="javascript">
+ var errorRespo = "field must not be empty";
+ var inputValue = document.getElementById('searchInput').value;
+  var dispError = document.getElementById('errors');
+  var searchBtn = document.getElementById('searchBtn');
+
+
+function errors (){
+ if(inputValue !== null || inputValue !== ""){
+       return dispError.innerHtml = "";
+   }
+   else{
+    dispError.style.color ='red';
+    console.log("error");}
+    return dispError.innerHTML = errorRespo;
+}
+    </script>
+<script th:src="@{/js/search-script.js}"></script>
 </body>
 </html>

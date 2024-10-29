@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Image Gallery</title>
-    <link rel="stylesheet" href="image-galary-style.css">
+    <link th:href="@{/css/image-galary-style.css}" rel="stylesheet">
 </head>
 <body>
     <!--navigation bar-->
         <div class="primary-header" id="MainBar">
-             <div class="nav one"><h1  id="navBack"><button id="navBackBtn"  onclick="location.href='http://127.0.0.1:5500/static/error/404.html';"><</button></h1></div>
+             <div class="nav one"><h1  id="navBack"><button id="navBackBtn" th:attr="onclick='location.href=\'/search'+'\''"><</button></h1></div>
              <div class="nav two"><h1  id="Title">Radiology</h1></div>
              <div class="nav three"><h3  id="userSessionName">Username</h3></div>
             </div>
@@ -17,14 +17,7 @@
     <div class="section left" id ="gallerySect">
         <div class="slider">
             <div class="list">
-                <div class="item"><img src="img/image1.jpg" alt="image1"></div>
-                <div class="item"><img src="img/image2.jpg" alt="image2"></div>
-                <div class="item"><img src="img/image3.jpg" alt="image3"></div>
-                <div class="item"><img src="img/image4.jpg" alt="image4"></div>
-                <div class="item"><img src="img/image5.jpg" alt="image5"></div>
-                <div class="item"><img src="img/image6.jpg" alt="image6"></div>
-                <div class="item"><img src="img/image7.jpg" alt="image7"></div>
-                <div class="item"><img src="img/image8.jpg" alt="image8"></div>  
+                <div class="item" th:each="image :${response2}"><img th:attr="src=@{http://localhost:800/image/file(url_Id=${image.url_Id})}, alt='image1', data-upload-date=${image.upload_Date}, data-uploader=${image.uploader}," /></div>
             </div>
          <div class="buttons">
             <button id="prev"><</button>
@@ -35,16 +28,21 @@
   <!--content displaying section-->
 <div class="section right" id="valueSect">
 <ul>
-    <li> 
-        <span>Name:      farai</span>
-        <span>Surname:   Tapfumaneyi</span>
-        <span>Date Uploaded:   04/04/2013</span>
-        <span>Uploaded By:  God Master</span>
+    <li th:each="patientInfo :${response0}">
+        <span th:attr="patientId=${patientInfo.patientId}" th:text="'Name: '+ ${patientInfo.patientName}">Name:      farai</span>
+        <span th:text="'Surname:'+ ${patientInfo.patientSurname}">Surname:   Tapfumaneyi</span>
+    </li>
+    <li>
+        <span id ="uploadDate">Date Uploaded:   </span>
+        <span id ="uploader">Uploaded By:  </span>
     </li>
 </ul>
-<button id="viewBtn" type="button" onclick="location.href='http://127.0.0.1:5500/static/error/404.html';">full view</button>
+<div class="galleryBtns">
+<button id="viewBtn" onclick="location.href='http://localhost:800/static/error/404.html';">full view</button>
+<button id="uploadBtn">upload</button>
 </div>
 </div>
-<script src="image-gallery-script.js"></script>
+</div>
+<script th:src="@{/js/image-gallery-script.js}"></script>
 </body>
 </html>

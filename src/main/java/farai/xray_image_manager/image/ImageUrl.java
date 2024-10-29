@@ -1,9 +1,10 @@
 package farai.xray_image_manager.image;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -16,16 +17,19 @@ public class ImageUrl implements Serializable {
    public int url_Id;
     @Column(name = "patient_id")
    public int patient_Id;
+
     @Column(name = "uploader")
    public String uploader;
     @Column(name = "upload_Date")
-   public LocalDate upload_Date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+   public LocalDateTime upload_Date;
+
     @Column(name = "url")
    public String url;
 
     public ImageUrl() {}
 
-    public ImageUrl(int patient_Id, String uploader, LocalDate upload_Date, String url) {
+    public ImageUrl(int patient_Id, String uploader, LocalDateTime upload_Date, String url) {
         this.patient_Id = patient_Id;
         this.uploader = uploader;
         this.upload_Date = upload_Date;
@@ -56,11 +60,11 @@ public class ImageUrl implements Serializable {
         this.uploader = uploader;
     }
 
-    public LocalDate getUpload_Date() {
+    public LocalDateTime getUpload_Date() {
         return upload_Date;
     }
 
-    public void setUpload_Date(LocalDate upload_Date) {
+    public void setUpload_Date(LocalDateTime upload_Date) {
         this.upload_Date = upload_Date;
     }
 
