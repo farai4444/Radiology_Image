@@ -8,8 +8,10 @@
 <body>    
 <div class="container">
     <h2 id="formTitle">Sign up</h2>
-<form action="" method="post" class="signUpForm">
-    <input type="text" name="userName" id="userName" class="inputValues" placeholder="username">
+<form th:action="@{/user/create-profile}"  method="post" class="signUpForm">
+    <input type="text" name="name" id="name" placeholder="name" class="inputValues">
+    <input type="text" name="surname" id="surname" placeholder="surname" class="inputValues">
+    <input type="text" name="username" id="userName" class="inputValues" placeholder="username">
     <input type="text" name="email" id="email" class="inputValues" placeholder="e-mail">
     <input type="password" name="password" id="password" class="inputValues" placeholder="password">
     <input type="password" name="confirm-password" id="confirm-password" class="inputValues" placeholder="confirm password">

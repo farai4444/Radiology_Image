@@ -2,6 +2,9 @@ package farai.xray_image_manager.Configurations;
 import farai.xray_image_manager.Patient.OtherService;
 import farai.xray_image_manager.Patient.Patient;
 import farai.xray_image_manager.Patient.PatientService;
+import farai.xray_image_manager.User.Sys_user;
+import farai.xray_image_manager.User.UserActivityMetrics;
+import farai.xray_image_manager.User.UserService;
 import farai.xray_image_manager.image.ImageRepo;
 import farai.xray_image_manager.image.ImageService;
 import farai.xray_image_manager.image.ImageUrl;
@@ -28,5 +31,11 @@ public class ClassBeans {
     public OtherService otherService () {return new OtherService();}
     @Bean
     public RestTemplate restTemplate () {return new RestTemplate();}
+    @Bean
+    public Sys_user user () {return new Sys_user();}
+    @Bean
+    public UserActivityMetrics userActivityMetrics () {return new UserActivityMetrics();}
+    @Bean
+    public UserService userService () {return new UserService();}
 
 }

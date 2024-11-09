@@ -75,6 +75,12 @@ span a{
 #email::placeholder{
 	color: white;
 }
+#name::placeholder{
+	color: white;
+}
+#surname::placeholder{
+	color: white;
+}
 #confirm-password::placeholder{
 	color: white;
 }

@@ -9,6 +9,9 @@
 #formTitle{
 	color: white;
 }
+#error{
+color:red;
+}
 body{
 	width: 80%;
 	height: auto;

@@ -6,12 +6,12 @@ import java.io.Serializable;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(name= Patient.FIND_ALL, query="UPDATE Patient SET age = 25, gender = 'm', country = 'Zimbabwe', city = 'Chinhoyi', address = 'Gunhill 4000' WHERE patient_Id = '1' ")})
 @SqlResultSetMapping(
         name="patientResult",
         entities=@EntityResult(entityClass = Patient.class)
-)
+)*/
 @Entity
 @Table(name = "Patient")
 public class Patient implements Serializable{

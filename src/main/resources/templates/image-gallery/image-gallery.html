@@ -10,7 +10,7 @@
         <div class="primary-header" id="MainBar">
              <div class="nav one"><h1  id="navBack"><button id="navBackBtn" th:attr="onclick='location.href=\'/search'+'\''"><</button></h1></div>
              <div class="nav two"><h1  id="Title">Radiology</h1></div>
-             <div class="nav three"><h3  id="userSessionName">Username</h3></div>
+             <div class="nav three"><h3 th:text="username" id="userSessionName">Username</h3></div>
             </div>
         <!--image displaying section-->
 <div class="container">
