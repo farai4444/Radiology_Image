@@ -8,7 +8,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/image")
+@Secured("ROLE_USER")
 public class ImageController {
     Logger log = LoggerFactory.getLogger(ImageController.class);
     @Autowired
@@ -62,7 +65,7 @@ public ImageService imageService;
         //return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"" +imageService.imageStream(patientId, imageName).getFilename()+"\"").body(imageService.imageStream(patientId, imageName));
         try {
             //imageService.imageStream(patientId,imageName).getFile().toPath()
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE,"image/jpeg").body(Files.readAllBytes(imageService.imageStreamDB(imageUrlService.getUrl(url_Id)).getFile().toPath()));
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE,"image/jpeg","").body(Files.readAllBytes(imageService.imageStreamDB(imageUrlService.getUrl(url_Id)).getFile().toPath()));
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -75,11 +78,16 @@ public ImageService imageService;
         return ResponseEntity.ok("The images are uploaded for patient "+patientId);
     }
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadImageFIleTemp(@RequestParam("patientId") int patientId, @RequestParam(name = "uploader") String uploader, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded){
+    public String uploadImageFIleTemp(@RequestParam(required = false) String username,@RequestParam("patientId") int patientId, @RequestParam(name = "uploader") String uploader, @RequestParam(name = "uploads") MultipartFile [] imagesUploaded, Model model){
         imageService.checkIfAnythingUploaded(imagesUploaded,patientId,uploader);
         /// log.info("uploaded to the next function");
         // imageService.checkIfFileFormatSupported(imagesUploaded,"100g");
-        return ResponseEntity.ok("The images are uploaded for patient "+patientId);
+        if (username != null) {
+            model.addAttribute("info", "images uploaded");
+            model.addAttribute("username",username);
+            model.addAttribute("usernameParam",username);
+        }
+        return "/search/search.html";
     }
     @GetMapping("/system")
     public ResponseEntity<String> getSystemName(){String Osname = System.getProperty("os.name");System.out.println();System.out.println("The Operating System is "+Osname);return ResponseEntity.ok(Osname);

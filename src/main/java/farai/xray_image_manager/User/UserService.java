@@ -41,11 +41,25 @@ public class UserService {
     // This function return either 1 or 0
     public int isUser(Sys_user user){
         if (userRepo.existsByObject(user)){
-            log.info("Existence check was successful");
+            log.info("user exist");
             return 1;
         }
         else {
+            log.info("user does not exist");
         return 0;}
+    }
+    //this returns an integer value
+    public int validation(Sys_user user){
+
+        if (isValidEncrypt(user.getPassword(),userRepo.existsByObject1(user))){
+            log.info("user exist");
+
+            return 1;
+        }
+        else {
+            log.info("user does not exist");
+            return 0;}
+
     }
     // this function must return a response value
     public void setUserProfile(Sys_user user){

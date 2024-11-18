@@ -8,9 +8,9 @@
 <body>
     <!--navigation bar-->
         <div class="primary-header" id="MainBar">
-             <div class="nav one"><h1  id="navBack"><button id="navBackBtn" th:attr="onclick='location.href=\'/search'+'\''"><</button></h1></div>
+             <div class="nav one"><h1  id="navBack"><button id="navBackBtn" th:attr="onclick='location.href=\'/search?username='+${username}+'\''"><</button></h1></div>
              <div class="nav two"><h1  id="Title">Radiology</h1></div>
-             <div class="nav three"><h3 th:text="username" id="userSessionName">Username</h3></div>
+             <div class="nav three"><h3 th:text="${username}" id="userSessionName">Username</h3></div>
             </div>
         <!--image displaying section-->
 <div class="container">
@@ -38,8 +38,8 @@
     </li>
 </ul>
 <div class="galleryBtns">
-<button id="viewBtn" onclick="location.href='http://localhost:800/static/error/404.html';">full view</button>
-<button id="uploadBtn">upload</button>
+<button id="viewBtn" th:onclick="location.href='http://localhost:800/static/error/404.html';">full view</button>
+<button id="uploadBtn" type="button" th:attr="onclick='location.href=\'/upload?patientId='+${patientIdParam}+'&'+'username='+${usernameParam}+ '\''">upload</button>
 </div>
 </div>
 </div>

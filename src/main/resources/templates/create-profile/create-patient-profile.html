@@ -8,8 +8,9 @@
 <body>
 
 <div class="container">
+    <h2 id="error" th:text="${error0}"></h2>
     <h2 id="formTitle">Create Profile</h2>
-<form action="" method="post" class="create-profile-form">
+<form th:action="@{/patient/create-profile}" method="post" class="create-profile-form">
     <input type="text" name="patientName" id="patientName" placeholder="name" class="inputValues">
     <input type="text" name="patientSurname" id="patientSurname" placeholder="surname" class="inputValues">
     <input type="number" name="age" id="age" placeholder="age" class="inputValues">
@@ -20,7 +21,8 @@
     <input type="radio" id="male" name = "gender" value="m" class="genderRadio">
     <label for="female" id="femaleLabel">Female</label>
     <input type="radio" id="female" name = "gender" value="f" class="genderRadio">
-     <button type="submit" id="createBtn">create profile</button> 
+    <input type="hidden" name="username" th:value="${username}">
+     <button type="submit" id="createBtn">create profile</button>
 </form>
 </div>
 <style th:inline="css">

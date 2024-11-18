@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping("/")
+@Secured("ROLE_USER")
 public class AppController {
     private static final Logger logs = LoggerFactory.getLogger(AppController.class);
     @GetMapping("hello")
@@ -49,16 +51,24 @@ public class AppController {
     }
 
     @GetMapping("upload")
-    public String upload(@RequestParam("patientId") int patientId, Model model){
-        model.addAttribute("patientId",patientId);
+    public String upload(@RequestParam("patientId") int patientId,@RequestParam(required = false) String username, Model model){
+        if (username != null) {
+            model.addAttribute("patientId", patientId);
+            model.addAttribute("username",username);
+        }
         return "upload/uploads.html";
     }
     @GetMapping("search")
-    public String search(){
+    public String search(@RequestParam(required = false) String username, Model model) {
+       if (username != null) {
+           model.addAttribute("username", username);
+           model.addAttribute("usernameParam", username);
+       }
         return "search/search.html";
     }
     @GetMapping("create-profile")
-    public String createProfile(){
+    public String createProfile(@RequestParam(required = false) String username,Model model){
+        model.addAttribute("username",username);
         return "create-profile/create-patient-profile.html";
     }
     @GetMapping("dashboard")
@@ -74,7 +84,7 @@ public class AppController {
         return  ResponseEntity.noContent();
     }
     @GetMapping("image-gallery")
-    public String image_Gallery(@RequestParam("patientId") String patientId,Model model){
+    public String image_Gallery(@RequestParam("patientId") String patientId,@RequestParam("username") String username, Model model){
         String patientObjectUrl = "http://localhost:800/patient/search?patientId="+patientId;
         /*THE IMAGE URL HAS NOT YET BEEN PLACED*/
         /*CHOOSE BETWEEN DATABASE AND FILESYSTEM URLS*/
@@ -86,6 +96,9 @@ public class AppController {
         model.addAttribute("response0",response0);
        // model.addAttribute("response1",response1);/*x*/
         model.addAttribute("response2",response2);
+        model.addAttribute("patientIdParam",patientId);
+        model.addAttribute("usernameParam",username);
+        model.addAttribute("username",username);
         return "image-gallery/image-gallery.html";
     }
     @GetMapping("sign-in")

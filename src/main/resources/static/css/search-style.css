@@ -67,7 +67,17 @@
 #valueSect {
 	margin: 20px 100px;
 	padding-bottom: 20px;
-	
+
+}
+#createProfileBtn{
+width: 164px;
+	height: 83px;
+	margin-left: 50px;
+	text-align: center;
+	border: 0px;
+	border-radius: 100px;
+	background-color:#1F8AFF;
+	color: white;
 }
 #viewBtn{
 	width: 164px;
@@ -79,6 +89,9 @@
 	background-color:#1F8AFF;
 	color: white;
 
+}
+#createProfileBtn:hover{
+background-color: teal;
 }
 #viewBtn:hover {
     background-color: teal; /* Change color on hover */
@@ -148,4 +161,9 @@
 }
 #userSessionName{
 	color: white;
+}
+.search-Btns{
+	height: 85px;
+	display: flex;
+	justify-content: space-between;
 }

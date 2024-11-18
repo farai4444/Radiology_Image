@@ -18,11 +18,11 @@ prev.onclick = function () {
     reloadSlider();
     console.log('active ' + active + ' Length ' + lengthItems);
 }
-uploadBtn.onclick = function () {
+/*uploadBtn.onclick = function () {
     var patientId= itemsIteration.getAttribute('patientId');
      location.href = '/upload?patientId=' + patientId;
      console.log("the redirect has happened, patientId = "+ patientId);
- }
+ }*/
 /**This function is having issues when displaying the uploadDate and uploader**/
 function reloadSlider() {
     var checkLeft = items[active].offsetLeft;
