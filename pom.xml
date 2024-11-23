@@ -99,7 +99,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!--
+      <!---
+        <plugin>
+            <groupId>org.apache.maven-surefire-plugin</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M7</version>
+            <configuration>
+                <argLine>-Dmockito.configuration.mock-maker-class=org.mockito.internal.creation.bytebuddy.ByteBuddyMockMaker</argLine>
+            </configuration>
+        </plugin>
+   			-->
+   			<!--
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>

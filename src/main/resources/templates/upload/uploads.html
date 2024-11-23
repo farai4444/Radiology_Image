@@ -10,6 +10,7 @@
     <h2 id="formTitle" >Image Upload</h2>
 <form th:action="@{/image/upload(patientId=${patientId})}" method="post" class="signInForm"  enctype="multipart/form-data" >
     <input type="text" name="uploader" id="uploader" class="inputValues" placeholder="uploader">
+    <input type="hidden" name="username" th:value="${username}">
     <input type="file" multiple ="multiple" name="uploads" id="uploads" class="inputValues" placeholder="choose files">
     <button type="submit" id="submitBtn">submit</button>
     

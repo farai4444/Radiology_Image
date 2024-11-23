@@ -7,7 +7,7 @@ import java.io.Serializable;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "Sys_user")
+@Table(name = "sys_user")
 public class Sys_user implements Serializable {
     @Id
     @Column(name = "userId")
@@ -23,14 +23,26 @@ public class Sys_user implements Serializable {
     private String username;
     @Column(name="password")
     private String password;
+
+    public String getACCESS_PRIVILEGES() {
+        return ACCESS_PRIVILEGES;
+    }
+
+    public void setACCESS_PRIVILEGES(String ACCESS_PRIVILEGES) {
+        this.ACCESS_PRIVILEGES = ACCESS_PRIVILEGES;
+    }
+
+    @Column(name = "ACCESS_PRIVILEGES")
+    private String ACCESS_PRIVILEGES;
     public Sys_user(){}
 
-    public Sys_user(String name, String surname, String email, String username, String password) {
+    public Sys_user(String name, String surname, String email, String username, String password,String ACCESS_PRIVILEGES) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.ACCESS_PRIVILEGES = ACCESS_PRIVILEGES;
     }
 
     @Override

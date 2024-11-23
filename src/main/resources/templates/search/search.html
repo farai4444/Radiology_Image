@@ -10,7 +10,7 @@
         <div class="primary-header" id="MainBar">
              <div class="nav 1"><h1  id="bar"></h1></div>
              <div class="nav 2"><h1  id="Title">Radiology</h1></div>
-             <div class="nav 3"><h3 th:text="${username}" id="userSessionName">Username</h3></div>
+             <div class="nav 3"><h3 th:text="${username}" id="userSessionName"></h3></div>
             </div>
         
 <div class="container">
@@ -18,23 +18,28 @@
     <div class="searchSect">
 <form th:action="@{/patient/temp/search}" method="get" class="searchForm">
     <input type="search" name="patientId" th:value="${patientId}" id="searchInput" placeholder="patient Id">
+    <input type="hidden" name="username" th:value="${usernameParam}">
     <button type="submit" id="searchBtn"> <img id="searchIcon" th:src="@{/img/3650895391548336152-128.png}" alt="" onsubmit="return errors()"></button>
 </form>
     </div>
 <div class="divider1"></div>
 <h1 id="resultHeader"></h1>
 <div class="section left" id="resultSect">
-    <span id="errors"></span>
+    <span id="errors" th:text="${error1}"></span>
+    <span id="profile-creation-info" th:text="${info}"></span>
 </div>
     </div>
 <div class="section right" id="valueSect" th:if="${searchResults}">
 <ul>
     <li th:each="result :${searchResults}">
-        <span th:text="'Name: '+ ${result.patientName}">Name:      Susan</span>
-        <span th:text="'Surname: ' + ${result.patientSurname}">Surname:   Smith</span>
-        <span th:text="'Age: '+${result.age}">Age:       40</span>
-        <span th:text="'Gender:  '+${result.gender}">Gender:     F</span>
-        <button id="viewBtn" type="button" th:attr="onclick='location.href=\'/image-gallery?patientId=' + ${result.patientId} + '\''">View Profile</button>
+        <span th:text="'Name:  '+ ${result.patientName}"></span>
+        <span th:text="'Surname:  '+ ${result.patientSurname}"></span>
+        <span th:text="'Age:  '+  ${result.age}"></span>
+        <span th:text="'Gender:  ' + ${result.gender}"></span>
+        <div class="search-Btns">
+        <button id="viewBtn" type="button" th:attr="onclick='location.href=\'/image-gallery?patientId=' + ${result.patientId} +'&'+'username='+${username}+'\''">View Profile</button>
+        <button id="createProfileBtn" type="button" th:attr="onclick='location.href=\'/create-profile?username=' +${username}+ '\''">Create Profile</button>
+    </div>
     </li>
 </ul>
 </div>
@@ -44,8 +49,6 @@
  var inputValue = document.getElementById('searchInput').value;
   var dispError = document.getElementById('errors');
   var searchBtn = document.getElementById('searchBtn');
-
-
 function errors (){
  if(inputValue !== null || inputValue !== ""){
        return dispError.innerHtml = "";

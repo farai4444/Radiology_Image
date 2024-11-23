@@ -16,8 +16,6 @@ public class UserActivityMetrics implements Serializable {
     private int userId;
     @Column(name = "LAST_ACTIVE_TIME")
     private LocalDateTime LAST_ACTIVE_TIME;
-    @Column(name = "ACCESS_PRIVILEGES")
-    private String ACCESS_PRIVILEGES;
     @Column(name = "ACTIVITY_STATUS")
     private String ACTIVITY_STATUS;
 
@@ -26,7 +24,6 @@ public class UserActivityMetrics implements Serializable {
         return "UserActivityMetrics{" +
                 "userId=" + userId +
                 ", LAST_ACTIVE_TIME=" + LAST_ACTIVE_TIME +
-                ", ACCESS_PRIVILEGES='" + ACCESS_PRIVILEGES + '\'' +
                 ", ACTIVITY_STATUS='" + ACTIVITY_STATUS + '\'' +
                 '}';
     }
@@ -46,15 +43,6 @@ public class UserActivityMetrics implements Serializable {
     public void setLAST_ACTIVE_TIME(LocalDateTime LAST_ACTIVE_TIME) {
         this.LAST_ACTIVE_TIME = LAST_ACTIVE_TIME;
     }
-
-    public String getACCESS_PRIVILEGES() {
-        return ACCESS_PRIVILEGES;
-    }
-
-    public void setACCESS_PRIVILEGES(String ACCESS_PRIVILEGES) {
-        this.ACCESS_PRIVILEGES = ACCESS_PRIVILEGES;
-    }
-
     public String getACTIVITY_STATUS() {
         return ACTIVITY_STATUS;
     }

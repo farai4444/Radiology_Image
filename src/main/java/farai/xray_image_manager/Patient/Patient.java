@@ -13,7 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
         entities=@EntityResult(entityClass = Patient.class)
 )*/
 @Entity
-@Table(name = "Patient")
+@Table(name = "patient")
 public class Patient implements Serializable{
     @Id
     @GeneratedValue(strategy = IDENTITY)
