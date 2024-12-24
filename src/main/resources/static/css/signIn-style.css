@@ -9,9 +9,19 @@
 #formTitle{
 	color: white;
 }
-#error{
-color:red;
+#invalid{
+    margin:5% 25%;
+    color:white;
 }
+#created{
+    margin:5% 25%;
+    color:white;
+}
+#logout{
+    margin:5% 25%;
+    color:white;
+}
+
 body{
 	width: 80%;
 	height: auto;

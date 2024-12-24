@@ -1,8 +1,5 @@
 package farai.xray_image_manager.User;
 
-import farai.xray_image_manager.Patient.JPARepo;
-import farai.xray_image_manager.Patient.Patient;
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,4 +9,6 @@ public interface UserRepo extends JpaRepository<Sys_user,Integer> {
      boolean existsByObject(@Param("user") Sys_user user);
     @Query("SELECT CASE WHEN COUNT(u)>0 THEN u.password END FROM Sys_user u WHERE u.username=:#{#user.username}")
     String existsByObject1(@Param("user") Sys_user user);
+    @Query("SELECT u FROM Sys_user u WHERE username=?1")
+    Sys_user findByUserName(String username);
 }

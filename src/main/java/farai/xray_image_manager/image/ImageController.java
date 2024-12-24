@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/image")
-@Secured("ROLE_USER")
+@Secured("USER")
 public class ImageController {
     Logger log = LoggerFactory.getLogger(ImageController.class);
     @Autowired

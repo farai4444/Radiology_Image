@@ -1,14 +1,19 @@
 package farai.xray_image_manager;
 
 import farai.xray_image_manager.Patient.Patient;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +27,14 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping("/")
-@Secured("ROLE_USER")
+@Secured("USER")
 public class AppController {
     private static final Logger logs = LoggerFactory.getLogger(AppController.class);
     @GetMapping("hello")
     public ResponseEntity<String> hello(){
         List<String> names;
         names = List.of("Levin","Devin","Kevin","Revin");
-        return ResponseEntity.ok( "farai name");}
+        return ResponseEntity.ok( "farai this is a failed url");}
     @Autowired
     private DataSource dataSource;
     //private DataSource appSource;
@@ -59,11 +64,18 @@ public class AppController {
         return "upload/uploads.html";
     }
     @GetMapping("search")
-    public String search(@RequestParam(required = false) String username, Model model) {
-       if (username != null) {
-           model.addAttribute("username", username);
-           model.addAttribute("usernameParam", username);
+    public String search(@RequestParam(required = false) String username0, Model model, HttpSession session) {
+        SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+        Authentication authentication = context.getAuthentication();
+        String username1 = authentication.getName();
+        if (username0 != null) {
+           model.addAttribute("username", username0);
+           model.addAttribute("usernameParam", username0);
        }
+        else{
+            model.addAttribute("username", username1);
+            model.addAttribute("usernameParam", username1);
+        }
         return "search/search.html";
     }
     @GetMapping("create-profile")
@@ -108,5 +120,18 @@ public class AppController {
     @GetMapping("sign-up")
     public String sign_Up(){
         return "sign-up/signup.html";
+    }
+    @GetMapping("invalidSession")
+    public ResponseEntity<String> handleInvalidSession() {
+        return ResponseEntity.ok( "invalidSession");
+    }
+    @GetMapping("sessionExpired")
+    public ResponseEntity<String> handleSessionExpired() {
+        return ResponseEntity.ok( "Session Expired");
+    }
+    @GetMapping
+    public ResponseEntity<String> welcomePage() {
+
+        return ResponseEntity.status(200).header(HttpHeaders.CONTENT_TYPE,"text").body("Welcome home");
     }
 }

@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<kotlin.version>1.8.0</kotlin.version>
+	<!--	<kotlin.version>1.8.0</kotlin.version>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -64,18 +64,19 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.dcm4che/dcm4che-core -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.dcm4che</groupId>
 			<artifactId>dcm4che-core</artifactId>
 			<version>5.33.0</version>
 		</dependency>
+		-->
 		<!-- https://mvnrepository.com/artifact/org.dcm4che/dcm4che-net -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.dcm4che</groupId>
 			<artifactId>dcm4che-net</artifactId>
 			<version>5.33.0</version>
 		</dependency>
-
+-->
 
 		<!--
 		<dependency>

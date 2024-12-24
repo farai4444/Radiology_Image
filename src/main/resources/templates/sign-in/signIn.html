@@ -7,7 +7,11 @@
 </head>
 <body>    
 <div class="container">
-    <h3 id="error" th:text="${error}"></h3>
+        <div th:if="${param.invalid}" id="invalid">Invalid username and password</div>
+        <div th:if="${param.created}" id ="created">Account was created</div>
+        <div th:if="${param.logout}" id ="logout">You have logged out</div>
+
+
 <form th:action="@{/user}" method="post" class="signInForm">
     <h2 id="formTitle">Sign In</h2>
     <input type="text" name="username" id="userName" class="inputValues" placeholder="username">

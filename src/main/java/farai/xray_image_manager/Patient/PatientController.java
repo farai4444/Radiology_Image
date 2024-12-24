@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/patient")
-@Secured("ROLE_USER")
+@Secured("USER")
 public class PatientController {
     @Autowired
     public PatientService patientService;
@@ -43,6 +43,7 @@ public class PatientController {
          List<?> searchResults = patientService.findByPatientId(patientId);
          model.addAttribute("searchResults",searchResults);
          model.addAttribute("username",username);
+         model.addAttribute("usernameParam",username);
         }
         return "search/search.html";
         //return "redirect:/search";
