@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # X-ray Imagery Manager
 * Procures x-ray images from devices ranging from tablets, PCs and smart phones
 * Uploads procured images of the formats JPEG and DICOM
@@ -15,3 +16,12 @@
 * admin dashboard
 
 
+=======
+# Radiology_Image
+application that stores images from the radiology department of a hospital
+
+# Updates needed
+1.configure the system to handle management of sessions
+2.configure the views to use APIs instead of the html files
+3.handling of user roles and their access to resources
+>>>>>>> f052481e3157714932d5c4d6b59bfa4163b62893
